@@ -13,12 +13,12 @@
  *= require_tree .
  *= require_self
  */
-span.1{
+span.one{
   padding-left: 20px;
   display: block;
 }
 
-span.2{
+span.two{
   padding-left: 40px;
   display: block;
 }
