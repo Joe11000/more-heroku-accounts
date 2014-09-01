@@ -43,14 +43,10 @@ gem 'thin'
 gem 'jquery-ui-rails'
 
 gem "protected_attributes"
-gem 'foreman', '~> 0.74.0'
-gem 'whenever' # cron jobs
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'binding_of_caller'
-  # gem 'guard-rspec'
-  gem 'debugger'
 end
 
 group :test do
