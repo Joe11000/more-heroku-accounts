@@ -49,7 +49,7 @@ gem 'whenever' # cron jobs
 group :development, :test do
   gem 'rspec-rails'
   gem 'binding_of_caller'
-  gem 'guard-rspec'
+  # gem 'guard-rspec'
   gem 'debugger'
 end
 
