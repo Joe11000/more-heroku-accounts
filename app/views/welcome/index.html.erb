@@ -1,0 +1,77 @@
+<p>Managing Multiple Heroku Accounts</p>
+
+<p>Bibliography this site below helped, but I diverged from its direction.</p>
+<p>http://martyhaught.com/articles/2010/12/14/managing-multiple-heroku-accounts/</p>
+
+<p>3 STEP INITIAL SET UP</p>
+<p>1) go to heroku.com and create an account per email address that you want. ie I have 3 email addresses and created 3 heroku accounts</p>
+
+<p>2) download and install heroku tool belt</p>
+
+<p>3) heroku plugins:install git://github.com/ddollar/heroku-accounts.git  # install this plugin</p>
+
+<p># As an example I am creating heroku account I am giving the name 'hero', You can call yours whatever you want.</p>
+<p># repeat steps 4-12, in order, for each account you wish to create.</p>
+<p>4) ssh-keygen # create new ssh key for each account you are planning on making. Save the key file in the .ssh folder i.e. ~/.ssh/hero_rsa. You really don't need your old id_rsa and id_rsa.pub if you end up just creating other keys. You could also just rename the id_rsa and id_rsa.pub file names to be match the account name to make it easier to remember. I just renamed it old_rsa and old_rsa.pub respectively.
+  <span class="1">a) Enter file in which to save the key : ~/.ssh/hero_rsa</span>
+  <span class="1">b) passphrase : -I just gave it my heroku login password-</span>
+
+<p>6) heroku accounts:add hero</p>
+  <span class="1">a) enter email address cooresponding to the heroku account you want to deploy to.</span>
+  <span class="1">b) enter your heroku password</span>
+  <span class="1">c) enter your heroku password again</span>
+
+<p>7) read output on screen and follow directions about copying a few lines of code into ~/.ssh/config. (create the file if it doesn't exist yet)
+  something like
+     <span class="1">Host heroku.hero</span>
+       <span class="2">HostName heroku.com</span>
+       <span class="2">IdentityFile /PATH/TO/PRIVATE/KEY</span>
+       <span class="2">IdentitiesOnly yes</span>
+
+<p>8) Replace the /PATH/TO/PRIVATE/KEY in the ~/.ssh/config to be the path to the path to the corresponding key you generated  ( i.e. ~/.ssh/hero_rsa)</p>
+
+<p>9) heroku accounts:default hero</p>
+
+<p>10) heroku login # log into your first account to one
+  a) enter account email
+  b) enter account password</p>
+
+
+<p># LOOP step 11-12 for each current project you will eventually deploy to heroku</p>
+<p>11) heroku accounts:set hero  # this sets which of your heroku account names to use when deploying/manipulating application on the server.</p>
+
+<p>12) git remote show heroku # This should work as expected.
+  <span class="1">a) Enter your password for the ssh key you want to connect to account</span>
+  <span class="1">b1) !! ONLY READY IF YOU RAN INTO Error 'Permission denied (publickey fatal: Could not read from remote repository ) !!</span>
+      <p><span class="2">b2) heroku keys:clear</span></p>
+      <p><span class="2">b3) heroku keys:add</span></p>
+      <p><span class="2">b4) # pick the ssh key you named with your correct account name</p></span>
+
+
+<p>13) heroku logout</p>
+
+<p>SHAZAM! SET UP IS NOW COMPLETE.</p>
+<p>THERE ARE A COUPLE POSSIBLE PATHS FROM HERE FOR FUTURE APPLICATIONS.
+  <span class="1">A) CONFIGURING AN EXISTING APPLICATION.</span>
+  <span class="1">B) CONFIGURING A NEW HEROKU APP</span>
+
+
+<p>********************************************* PATH A</p>
+<p>A1) cd into any project with a git repo</p>
+<p>A2) heroku accounts:set hero  # this sets which of your heroku account names to use when deploying/manipulating application on the server. Once set it will remember for each individual app</p>
+
+<p>********************************************* PATH B</p>
+<p>B1) rails new sample-app  --database=postgresql</p>
+
+<p>B1) cd sample_app; git init; git add .; git commit -m 'initial commit'</p>
+
+<p>B2) heroku accounts:set hero  # this sets which of your heroku account names to use when deploying/manipulating application on the server. Once set it will remember for each individual app </p>
+
+<p>B3) heroku create sample-app</p>
+
+<p>B4) git push heroku master</p>
+
+
+
+<p>heroku accounts --help # Accounts documentation</p>
+

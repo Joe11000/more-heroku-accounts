@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+span.1{
+  padding-left: 20px;
+  display: block;
+}
+
+span.2{
+  padding-left: 40px;
+  display: block;
+}

@@ -38,3 +38,33 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+## I ADDED THESE BELOW
+gem 'thin'
+gem 'jquery-ui-rails'
+
+gem "protected_attributes"
+gem 'foreman', '~> 0.74.0'
+gem 'whenever' # cron jobs
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'binding_of_caller'
+  gem 'guard-rspec'
+  gem 'debugger'
+end
+
+group :test do
+  gem 'selenium-webdriver', require: false
+  gem 'poltergeist', require: false
+  gem 'launchy'
+end
+
+group :development do
+  gem 'better_errors'
+end
+
+group :production do
+  gem 'newrelic_rpm', '~> 3.9.3.241'
+  gem 'rails_12factor'  # heroku deployment needs this
+  gem 'sprockets-rails' # automatically compile your assests for you don't have to.
+end
